@@ -1,0 +1,48 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Data - Large files (will use Git LFS)
+data/multiwoz24/*.zip
+data/multiwoz24/MULTIWOZ2.4/
+# data/multiwoz24/data.json  # Tracked by Git LFS
+# data/processed/train.json  # Tracked by Git LFS
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Logs
+*.log
+
+# Model checkpoints
+checkpoints/
+models/
+*.pth
+*.pt
+*.ckpt
+
+# Experiments
+experiments/
+runs/
+wandb/
