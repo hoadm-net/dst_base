@@ -6,9 +6,10 @@
 - Compared our preprocessing with official MultiWOZ 2.4 repository
 - Domain extraction logic matches official implementation
 - Active domain detection: correctly identifies domains with actual goal content
-- Supports all 7 domains: hotel, restaurant, train, taxi, attraction, hospital, police
-- Note: police domain exists in raw data but has no trackable slots in ontology
-- Bus domain exists in ontology but no dialogues use it
+- **5 Main Domains**: hotel, restaurant, train, taxi, attraction (as mentioned in the paper)
+- **2 Secondary Domains**: hospital (117 dialogues), police (245 dialogues) - exist but rarely used
+- **1 Ghost Domain**: bus (exists in ontology with 6 slots but NO dialogues use it)
+- **Total**: 6 active domains in practice (7 in ontology, 5 primary + 2 secondary)
 
 ## Model Performance
 
@@ -34,13 +35,19 @@
 ## Domain Analysis
 
 ### Domain Usage in Test Set
+**5 Main Domains (as per paper):**
 - **train**: 2,266 predictions (ground truth) vs 3,823 (predicted)
-- **restaurant**: 2,362 ground truth vs 1,905 predicted
+- **restaurant**: 2,362 ground truth vs 1,905 predicted  
 - **hotel**: 2,396 ground truth vs 4,455 predicted
 - **attraction**: 946 ground truth vs 1,144 predicted
 - **taxi**: 604 ground truth vs 1,121 predicted
-- **hospital**: 0 predictions (no test set coverage)
-- **police**: 0 predictions (no test set coverage)
+
+**Secondary Domains:**
+- **hospital**: 0 predictions (no test set coverage, but 117 train dialogues)
+- **police**: 0 predictions (no test set coverage, but 245 train dialogues)
+
+**Ghost Domain:**
+- **bus**: 0 dialogues (exists in ontology but unused)
 
 ### Top Performing Slots
 1. **restaurant-food**: 80.04%
@@ -58,11 +65,13 @@
 
 ## Key Insights
 
-1. **Rule-based Limitations**: 36.22% JGA shows clear limitations compared to neural models (55-80% JGA)
-2. **Over-prediction Issue**: Model tends to predict more slots than actual (12,448 vs 8,574 ground truth)
-3. **Domain Bias**: Model over-predicts hotel domain and under-predicts restaurant domain
-4. **Strong Food Recognition**: Excellent performance on restaurant-food slot (80.04%)
-5. **Preprocessing Accuracy**: Our preprocessing correctly handles MultiWOZ 2.4 format and domain structure
+1. **Paper Claims Confirmed**: MultiWOZ 2.4 paper mentions 5 main domains (attraction, hotel, restaurant, taxi, train)
+2. **Domain Reality**: 6 domains actually used (5 main + hospital/police), 1 ghost domain (bus in ontology only)
+3. **Rule-based Limitations**: 36.22% JGA shows clear limitations compared to neural models (55-80% JGA)
+4. **Over-prediction Issue**: Model tends to predict more slots than actual (12,448 vs 8,574 ground truth)
+5. **Domain Bias**: Model over-predicts hotel domain and under-predicts restaurant domain
+6. **Strong Food Recognition**: Excellent performance on restaurant-food slot (80.04%)
+7. **Preprocessing Accuracy**: Our preprocessing correctly handles MultiWOZ 2.4 format and domain structure
 
 ## Technical Validation
 
@@ -81,5 +90,10 @@
 ## Conclusion
 
 This rule-based DST system provides a solid baseline for MultiWOZ 2.4, achieving 36.22% Joint Goal Accuracy. While significantly below state-of-the-art neural models (80%+), it demonstrates the complexity of dialogue state tracking and provides interpretable rules for further analysis.
+
+**Key Findings:**
+- **Paper accuracy confirmed**: MultiWOZ 2.4 paper correctly mentions 5 main domains
+- **Domain structure**: 5 primary + 2 secondary + 1 ghost domain = 8 ontology domains, 6 active domains
+- **Preprocessing validity**: Our pipeline correctly handles the actual domain structure used in practice
 
 The preprocessing pipeline correctly handles MultiWOZ 2.4 format and can serve as a foundation for more sophisticated approaches.
