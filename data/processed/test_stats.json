@@ -5,11 +5,11 @@
   "num_tokens_user": 86552,
   "num_tokens_system": 110946,
   "domain_counts": {
-    "taxi": 1000,
-    "hotel": 1000,
-    "attraction": 1000,
-    "train": 1000,
-    "restaurant": 1000
+    "taxi": 195,
+    "restaurant": 437,
+    "attraction": 396,
+    "train": 495,
+    "hotel": 394
   },
   "slot_counts": {
     "taxi-destination": 591,

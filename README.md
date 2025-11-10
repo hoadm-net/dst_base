@@ -309,7 +309,22 @@ Turn 2: "What about in the north?" (co-reference to "restaurant serving italian 
 - Lỗi ở turn trước có thể ảnh hưởng các turns sau
 - Cumulative belief state cần maintain accuracy
 
-## 🔧 Dependencies
+## Results
+
+### Current Model Performance
+- **Joint Goal Accuracy (JGA)**: 36.22%
+- **Slot Accuracy**: 25.25%
+- **F1 Score**: 40.32%
+- **Precision**: 33.30%
+- **Recall**: 51.10%
+
+**Comparison with SOTA**: Our rule-based model achieves 36.22% JGA compared to neural models that achieve 55-80% JGA on MultiWOZ 2.4, demonstrating the complexity of dialogue state tracking while providing an interpretable baseline.
+
+See [FINAL_RESULTS.md](FINAL_RESULTS.md) for detailed analysis and benchmarking.
+
+## Key Improvements in MultiWOZ 2.4
+
+## �🔧 Dependencies
 
 ```txt
 requests>=2.31.0

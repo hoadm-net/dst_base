@@ -1,7 +1,7 @@
 {
-  "false_positives": 8136,
-  "false_negatives": 3939,
-  "incorrect_values": 472,
-  "total_errors": 12547,
+  "false_positives": 7841,
+  "false_negatives": 3967,
+  "incorrect_values": 462,
+  "total_errors": 12270,
   "total_turns": 7372
 }

@@ -5,11 +5,13 @@
   "num_tokens_user": 648621,
   "num_tokens_system": 841997,
   "domain_counts": {
-    "taxi": 8438,
-    "hotel": 8438,
-    "attraction": 8438,
-    "train": 8438,
-    "restaurant": 8438
+    "hotel": 3387,
+    "police": 245,
+    "train": 3117,
+    "restaurant": 3817,
+    "attraction": 2718,
+    "hospital": 287,
+    "taxi": 1655
   },
   "slot_counts": {
     "hotel-pricerange": 10975,
@@ -36,6 +38,7 @@
     "restaurant-food": 16945,
     "attraction-name": 7718,
     "restaurant-name": 10758,
+    "hospital-department": 384,
     "attraction-type": 11104,
     "taxi-booked": 3324,
     "taxi-leaveat": 2216,
@@ -45,10 +48,11 @@
     "restaurant-time": 9206,
     "restaurant-day": 9306,
     "restaurant-people": 9354,
-    "taxi-arriveby": 1809
+    "taxi-arriveby": 1809,
+    "hospital-booked": 22
   },
   "avg_turns_per_dialogue": 6.72884569803271,
-  "avg_slots_per_turn": 5.717531438233118,
+  "avg_slots_per_turn": 5.72468209517771,
   "avg_tokens_user": 11.423808517383494,
   "avg_tokens_system": 14.829634717672338
 }

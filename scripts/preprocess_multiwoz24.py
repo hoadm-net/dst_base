@@ -10,13 +10,13 @@ from tqdm import tqdm
 
 
 class MultiWOZ24Preprocessor:
-    def __init__(self, data_dir="../data/multiwoz24", output_dir="../data/processed"):
+    def __init__(self, data_dir, output_dir):
         self.data_dir = Path(data_dir)
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(parents=True, exist_ok=True)
         
-        # Domains trong MultiWOZ
-        self.domains = ['hotel', 'restaurant', 'attraction', 'train', 'taxi']
+        # Tất cả 7 domains trong MultiWOZ 2.4
+        self.domains = ['hotel', 'restaurant', 'attraction', 'taxi', 'train', 'hospital', 'police']
         
         # Data containers
         self.data = None
@@ -92,10 +92,23 @@ class MultiWOZ24Preprocessor:
             'turns': []
         }
         
-        # Extract domains từ goal
+        # Extract ACTIVE domains từ goal
         if 'goal' in dialogue:
-            processed['domains'] = [d for d in dialogue['goal'].keys() 
-                                   if d in self.domains]
+            active_domains = []
+            goal = dialogue['goal']
+            
+            for domain in self.domains:
+                if domain in goal and isinstance(goal[domain], dict):
+                    # Check if domain has actual content (not just empty structure)
+                    domain_goal = goal[domain]
+                    has_info = any(v for k, v in domain_goal.items() 
+                                 if k != 'reqt' and v and v != '')
+                    has_reqt = domain_goal.get('reqt', [])
+                    
+                    if has_info or has_reqt:
+                        active_domains.append(domain)
+            
+            processed['domains'] = active_domains
         
         # Accumulated belief state
         accumulated_state = {}
@@ -330,8 +343,8 @@ class MultiWOZ24Preprocessor:
 def main():
     """Main function"""
     preprocessor = MultiWOZ24Preprocessor(
-        data_dir="../data/multiwoz24",
-        output_dir="../data/processed"
+        data_dir="data/multiwoz24",
+        output_dir="data/processed"
     )
     preprocessor.process_all()
     
